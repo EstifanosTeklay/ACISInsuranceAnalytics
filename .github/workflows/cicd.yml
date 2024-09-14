@@ -1,0 +1,34 @@
+name: Code Quality Check
+
+# Trigger the workflow on push and pull request events for the 'main' branch
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Run flake8 directly without installing dependencies
+      - name: Run flake8 Linting
+        uses: github/super-linter@v5
+        env:
+          VALIDATE_PYTHON_FLUFF: true  # Checks for Python code
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Step 3: Perform additional static analysis using pre-built pylint action
+      - name: Run static analysis with Pylint
+        uses: reviewdog/action-pylint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
