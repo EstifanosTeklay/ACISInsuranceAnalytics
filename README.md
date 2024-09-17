@@ -11,7 +11,7 @@ To use the datasets in this project with DVC, follow these steps:
 
 Clone the repository:
 
-git clone https://github.com/Daniel-Andarge/AiML_ACIS-insurance-solutions.git
+git clone https://github.com/EstifanosTeklay/ACISInsuranceAnalytics.git
 cd AiML_ACIS-insurance-solutions
 Install the project dependencies:
 
